@@ -1,15 +1,13 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
-function ProjectDisplay({ projects, colors }) {
-  const { pathname } = useLocation();
-  const currentId = pathname.split('/').pop();
-  const project = projects.find(p => p.id === currentId) || projects[0];
-
+// 改為接收 project 物件作為參數
+function ProjectDisplay({ project, colors }) {
+  
   if (!project) return null;
 
   return (
-    <div key={currentId} className="card border-0 shadow-sm overflow-hidden project-card-animation" style={{ borderRadius: '15px' }}>
+    // 使用 project.id 作為 key，這樣 React 切換時會重新渲染動畫
+    <div key={project.id} className="card border-0 shadow-sm overflow-hidden project-card-animation" style={{ borderRadius: '15px' }}>
       <div style={{ width: '100%', height: '280px', backgroundColor: '#f8f9fa', overflow: 'hidden' }}>
         <img
           src={project.img}
@@ -43,7 +41,7 @@ function ProjectDisplay({ projects, colors }) {
             <a href={project.link} target="_blank" rel="noopener noreferrer" className="btn-custom">點擊前往作品</a>
           )}
           {project.link_pages && (
-            <a href={project.link_pages} target="_blank" rel="noopener noreferrer" className="btn-github">前往 GitHub 連結</a>
+            <a href={project.link_pages} target="_blank" rel="noopener noreferrer" className="btn-github ms-2">前往 GitHub 連結</a>
           )}
         </div>
       </div>

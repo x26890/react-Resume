@@ -1,8 +1,13 @@
-import React from 'react';
-import { NavLink, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useState } from 'react'; // 引入 useState
 import ProjectDisplay from './ProjectDisplay';
 
 function Projects({ projects, colors }) {
+  // 建立一個狀態來追蹤目前選中的專案，預設為第一個
+  const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
+
+  // 根據 activeProjectId 找到對應的專案資料
+  const currentProject = projects.find(p => p.id === activeProjectId);
+
   return (
     <section className="my-5">
       <div className="d-flex align-items-center mb-4">
@@ -11,29 +16,27 @@ function Projects({ projects, colors }) {
       </div>
 
       <div className="row g-4">
-        {/* 左側選單 */}
+        {/* 左側選單：改用 button 觸發 setActiveProjectId */}
         <div className="col-md-4">
           <div className="nav flex-column">
             {projects.map((proj) => (
-              <NavLink
+              <button
                 key={proj.id}
-                to={`/project/${proj.id}`}
-                className={({ isActive }) =>
-                  `nav-link-custom ${isActive ? 'nav-link-active' : ''}`
-                }
+                onClick={() => setActiveProjectId(proj.id)}
+                className={`nav-link-custom text-start border-0 mb-2 ${
+                  activeProjectId === proj.id ? 'nav-link-active' : ''
+                }`}
+                style={{ background: 'none', textAlign: 'left' }}
               >
                 {proj.name}
-              </NavLink>
+              </button>
             ))}
           </div>
         </div>
 
-        {/* 右側內容區 */}
+        {/* 右側內容區：直接渲染 ProjectDisplay 並傳入當前專案 */}
         <div className="col-md-8">
-          <Routes>
-            <Route path="/" element={<Navigate to={`/project/${projects[0].id}`} replace />} />
-            <Route path="/project/:projectId" element={<ProjectDisplay projects={projects} colors={colors} />} />
-          </Routes>
+          <ProjectDisplay project={currentProject} colors={colors} />
         </div>
       </div>
     </section>
