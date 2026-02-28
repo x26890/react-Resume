@@ -14,7 +14,7 @@ export const resumeData = {
   email: "x268900@gmail.com",
   phone: "0910331182", // 新增手機
   availableTime: "下午 16:30 後", // 新增聯絡時間
-  WorkDate: "年後上班，或3月初",
+  WorkDate: "2個禮拜左右",
   skills: ["React", "Bootstrap", "JavaScript", "AI-Assisted Development"],
   biography: "我是涂芳誠。目前仍在小北百貨工作中，下班後都會抽空利用時間研讀網頁程式相關知識。我對開發網頁有著濃興趣，目前正專注鑽研 React 與 Bootstrap 框架、能使用Vite 快速建構React架構並且能夠使用GitHub上傳網頁讓網頁運作，並熱衷於與 AI 互動、協作開發。作品集專區的成果是我近幾個月的學習產出，雖然大部分架構由 AI 輔助呈現，但我能精確引導 AI 生產出符合需求的畫面與特定功能。在 AI 成為不可忽視趨勢的今日，我將持續精進實力。",
   experience: [
